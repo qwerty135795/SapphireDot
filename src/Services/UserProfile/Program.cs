@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Shared.Extensions.MassTransit;
 using Shared.Extensions.MinimalApiExtensions;
 using UserProfile.Data;
 
@@ -14,7 +15,7 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddMediatR(opt =>
     opt.RegisterServicesFromAssembly(typeof(Program).Assembly));
 builder.Services.AddEndpoints(typeof(Program).Assembly);
-
+builder.Services.AddConfiguredMassTransit(typeof(Program).Assembly);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

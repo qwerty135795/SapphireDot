@@ -3,7 +3,7 @@ using MediatR;
 
 namespace UserProfile.Features.CreateProfile;
 
-public class CreateProfileRequest : IRequest
+public class CreateProfileRequest : IRequest<Guid>
 {
     public Guid UserId { get; set; }
     public string FirstName { get; set; }

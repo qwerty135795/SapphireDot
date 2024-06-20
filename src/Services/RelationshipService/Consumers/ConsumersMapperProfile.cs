@@ -8,6 +8,7 @@ public class ConsumersMapperProfile : Profile
 {
     public ConsumersMapperProfile()
     {
-        CreateMap<UserCreated, User>();
+        CreateMap<UserCreated, User>().ForMember(o => o.Id, src =>
+            src.MapFrom(path => path.UserId));
     }
 }

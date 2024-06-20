@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace RelationshipService.Features.AddToBlackList;
+namespace RelationshipService.Features.BlackListNS.AddToBlackList;
 
 public class AddToBlackListRequest : IRequest
 {

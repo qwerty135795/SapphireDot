@@ -9,7 +9,8 @@ public class RelationshipContext : DbContext
     {
         
     }
-
-    public DbSet<UserRelationship> Relationships { get; set; }
     public DbSet<User> Users { get; set; }
+    public DbSet<FriendRequest> FriendRequests { get; set; }
+    public DbSet<BlackList> BlockedUsers { get; set; }
+    public DbSet<Friendship> Friendships { get; set; }
 }

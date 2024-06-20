@@ -7,7 +7,7 @@ using Profile = UserProfile.Entities.Profile;
 
 namespace UserProfile.Features.CreateProfile;
 
-public class CreateProfileRequestHandler : IRequestHandler<CreateProfileRequest>
+public class CreateProfileRequestHandler : IRequestHandler<CreateProfileRequest, Guid>
 {
     private readonly ProfileContext _context;
     private readonly IMapper _mapper;
@@ -20,14 +20,17 @@ public class CreateProfileRequestHandler : IRequestHandler<CreateProfileRequest>
         _mapper = mapper;
         _endpoint = endpoint;
     }
-    public async Task Handle(CreateProfileRequest request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(CreateProfileRequest request, CancellationToken cancellationToken)
     {
         var profile = _mapper.Map<Profile>(request);
         _context.Profiles.Add(profile);
         if (await _context.SaveChangesAsync(cancellationToken) > 0)
         {
             var user = _mapper.Map<UserCreated>(profile);
+            
             await _endpoint.Publish(user, cancellationToken);
         }
+
+        return profile.Id;
     }
 }

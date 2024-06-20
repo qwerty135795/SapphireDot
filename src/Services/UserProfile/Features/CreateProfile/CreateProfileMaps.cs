@@ -10,6 +10,8 @@ public class CreateProfileMaps : AutoMapper.Profile
     public CreateProfileMaps()
     {
         CreateMap<CreateProfileRequest, Profile>();
-        CreateMap<Profile, UserCreated>();
+        CreateMap<Profile, UserCreated>().ForMember(o => o.UserId,
+            src => 
+            src.MapFrom(path => path.Id));
     }
 }

@@ -1,24 +1,7 @@
 ﻿services:
-  identity-svc:
-    image: identityservice
-    build:
-      context: .
-      dockerfile: src/Services/IdentityService/Dockerfile
-
-  message-svc:
-    image: messageservice
-    build:
-      context: .
-      dockerfile: src/Services/MessageService/Dockerfile
-
-  relationshipservice:
-    image: relationshipservice
-    build:
-      context: .
-      dockerfile: src/Services/RelationshipService/Dockerfile
-
-  userprofile:
-    image: userprofile
-    build:
-      context: .
-      dockerfile: src/Services/UserProfile/Dockerfile
+  rabbitmq:
+    image: rabbitmq:3.13.3-management-alpine
+    restart: always
+    ports:
+      - 15672:15672
+      - 5672:5672
