@@ -5,3 +5,9 @@
     ports:
       - 15672:15672
       - 5672:5672
+
+  webgateway:
+    image: webgateway
+    build:
+      context: .
+      dockerfile: src/WebGateway/Dockerfile
